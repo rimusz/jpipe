@@ -14,4 +14,4 @@ pipelines:
         execution:
           # onStart: do
           onExecute:
-            - echo foo is $foo and fizz is $fizz
+            - echo foo is $foo and fizz is $fizz !!
