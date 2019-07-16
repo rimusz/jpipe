@@ -1,0 +1,15 @@
+- name: dockerRun
+  steps:
+    - name: runCommandsInDocker
+      type: Bash
+      configuration:
+        runtime:
+          type: image
+          image:
+            custom:
+              image: alpine
+              tag: latest
+      execution:
+        onExecute:
+          - echo "I'm running in container!!!"
+   
