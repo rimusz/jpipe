@@ -26,7 +26,7 @@ pipelines:
         execution:
           # onStart: do
           onExecute:
-            - cd $res_c3isetup_resourcePath
+            - cd $res_c3i_setup_resourcePath
             - ls
             - pwd
             - gcloud version
