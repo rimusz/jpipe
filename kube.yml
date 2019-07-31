@@ -7,7 +7,7 @@ resources:
   - name: dh_image
     type: Image
     configuration:
-      registry: docker.io
+      registry: rimas_dockerhub
       imageName: busybox
       imageTag: latest
       autoPull: true
