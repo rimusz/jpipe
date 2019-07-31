@@ -1,5 +1,5 @@
 resources:
-  - name: c3isetup
+  - name: c3i_setup
     type: GitRepo
     configuration:
       gitProvider: rimas_github
@@ -20,7 +20,7 @@ pipelines:
             foo: bar
             fizz: bin
           inputResources:
-            - name: c3isetup
+            - name: c3i_setup
           integrations:
             - name: c3i_dev_kube
         execution:
