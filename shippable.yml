@@ -1,11 +1,11 @@
 resources:
   - name: img_1
-    type: image
-    imageName: ragesh/busybox
+    type: Image
     configuration:
-      integrationName: docker
-    initialVersion:
+      registry: rimas_dockerhub
+      imageName: busybox
       imageTag: latest
+      autoPull: true
 
 pipelines:
       - name: start
