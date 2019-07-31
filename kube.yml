@@ -32,6 +32,14 @@ pipelines:
             - gcloud version
             - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
             - kubectl get pods -n conan
+            - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get > /tmp/get_helm.sh
+            - chmod 700 /tmp/get_helm.sh
+            - /tmp/get_helm.sh
+            - helm init --client-only
+            - helm repo add jfrog https://charts.jfrog.io/
+            - helm repo update
+            - helm plugin install https://github.com/rimusz/helm-tiller
+            - helm tiller run -- helm ls
             - echo foo is $foo and fizz is $fizz
             - echo pipe is $pipe
             - echo check is $check
