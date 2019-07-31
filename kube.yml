@@ -4,7 +4,14 @@ resources:
     configuration:
       gitProvider: rimas_github
       path: conan-io/c3i-setup
-
+  - name: dh_image
+    type: Image
+    configuration:
+      registry: dockerhub
+      imageName: busybox
+      imageTag: latest
+      autoPull: true
+      
 pipelines:
   - name: TestKube
     configuration:
