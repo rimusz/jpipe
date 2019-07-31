@@ -1,0 +1,70 @@
+resources:
+  - name: c3isetup
+    type: GitRepo
+    configuration:
+      gitProvider: rimas_github
+      path: conan-io/c3i-setup
+
+pipelines:
+  - name: TestBash
+    configuration:
+      environmentVariables:
+        readOnly:
+          pipe: yes
+        check: 'true'
+    steps:
+      - name: run1
+        type: Bash
+        configuration:
+          environmentVariables:
+            foo: bar
+            fizz: bin
+          inputResources:
+            - name: c3isetup
+          integrations:
+            - name: c3i_dev_kube
+        execution:
+          # onStart: do
+          onExecute:
+            - cd $res_c3isetup_resourcePath
+            - ls
+            - pwd
+            - gcloud version
+            - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
+            - kubectl get pods -n conan
+            - echo foo is $foo and fizz is $fizz
+            - echo pipe is $pipe
+            - echo check is $check
+            - add_run_variables firststg=1,2
+      - name: firststg1
+        type: Bash
+        configuration:
+          environmentVariables:
+            check: 'true'
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - echo first stage $firststg
+            - if [[ ! "$firststg" =~ "1" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+            - echo check is $check
+      - name: firststg2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - if [[ ! "$firststg" =~ "2" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+      - name: firststg3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - if [[ ! "$firststg" =~ "3" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+            
