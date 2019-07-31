@@ -6,7 +6,7 @@ resources:
       path: conan-io/c3i-setup
 
 pipelines:
-  - name: TestBash
+  - name: TestKube
     configuration:
       environmentVariables:
         readOnly:
