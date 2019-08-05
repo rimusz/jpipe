@@ -31,6 +31,7 @@ pipelines:
             - name: c3i_setup
           integrations:
             - name: c3i_dev_kube
+            - name: cpe_pipeline_slack
         execution:
           # onStart: do
           onExecute:
@@ -52,6 +53,7 @@ pipelines:
             - echo pipe is $pipe
             - echo check is $check
             - add_run_variables firststg=1,2
+            - send_notification cpe_pipeline_slack --text "Execution finished!"
       - name: firststg1
         type: Bash
         configuration:
