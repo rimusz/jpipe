@@ -29,6 +29,7 @@ pipelines:
             DESIRED_VERSION: v2.14.3
           inputResources:
             - name: c3i_setup
+            - name: dh_image
           integrations:
             - name: c3i_dev_kube
             - name: cpe_pipeline_slack
