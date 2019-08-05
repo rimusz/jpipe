@@ -33,7 +33,8 @@ pipelines:
             - name: c3i_dev_kube
             - name: cpe_pipeline_slack
         execution:
-          # onStart: do
+          onStart:
+            - send_notification cpe_pipeline_slack --text "Starting TestKube run1 step" 
           onExecute:
             - cd $res_c3i_setup_resourcePath
             - ls
@@ -53,7 +54,7 @@ pipelines:
             - echo pipe is $pipe
             - echo check is $check
             - add_run_variables firststg=1,2
-            - send_notification cpe_pipeline_slack --text "Execution finished!"
+            - send_notification cpe_pipeline_slack --text "TestKube run1 execution finished!"
       - name: firststg1
         type: Bash
         configuration:
