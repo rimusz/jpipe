@@ -30,7 +30,7 @@ pipelines:
             - cd $res_c3i_setup_resourcePath
             - ls
             - pwd
-            - echo $int_env_test_aaa_aaa
+            - echo ${int_env_test_aaa_aaa//_/-}
             - gcloud version
             - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
             - kubectl get pods -n conan
