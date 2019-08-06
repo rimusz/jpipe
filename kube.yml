@@ -31,6 +31,7 @@ pipelines:
             - ls
             - pwd
             - echo ${int_env_test_aaa_aaa//_/-}
+            - echo ${int_env_test_ccc_ccc//_/-}
             - gcloud version
             - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
             - kubectl get pods -n conan
