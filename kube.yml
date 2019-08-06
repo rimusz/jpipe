@@ -24,7 +24,6 @@ pipelines:
             - name: c3i_setup
           integrations:
             - name: c3i_dev_kube
-            - name: cpe_pipeline_slack
         execution:
           onExecute:
             - cd $res_c3i_setup_resourcePath
