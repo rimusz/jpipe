@@ -1,1 +1,81 @@
-.
+resources:
+  - name: c3i_setup
+    type: GitRepo
+    configuration:
+      gitProvider: rimas_github
+      path: conan-io/c3i-setup
+      
+pipelines:
+  - name: TestKube
+    configuration:
+      environmentVariables:
+        readOnly:
+          pipe: yes
+        check: 'true'
+    steps:
+      - name: run1
+        type: Bash
+        configuration:
+          environmentVariables:
+            foo: bar
+            fizz: bin
+            DESIRED_VERSION: v2.14.3
+          inputResources:
+            - name: c3i_setup
+          integrations:
+            - name: c3i_dev_kube
+            - name: env_test
+        execution:
+          onExecute:
+            - cd $res_c3i_setup_resourcePath
+            - ls
+            - pwd
+            - echo ${int_env_test_aaa_aaa//_/-}
+            - echo ${int_env_test_ccc_ccc//_/-}
+            - gcloud version
+            - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
+            - kubectl get pods -n conan
+            - curl -LO https://git.io/get_helm.sh
+            - chmod 700 get_helm.sh
+            - ./get_helm.sh
+            - helm init --client-only
+            - helm repo add jfrog https://charts.jfrog.io/
+            - helm repo update
+            - helm plugin install https://github.com/rimusz/helm-tiller
+            - helm tiller run -- helm ls
+            - echo foo is $foo and fizz is $fizz
+            - echo pipe is $pipe
+            - echo check is $check
+            - add_run_variables firststg=1,2
+      - name: firststg1
+        type: Bash
+        configuration:
+          environmentVariables:
+            check: 'true'
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - echo first stage $firststg
+            - if [[ ! "$firststg" =~ "1" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+            - echo check is $check
+      - name: firststg2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - if [[ ! "$firststg" =~ "2" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+      - name: firststg3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: run1
+        execution:
+          onExecute:
+            - if [[ ! "$firststg" =~ "3" ]]; then echo need to skip; exit; fi
+            - echo pipe is $pipe
+            
