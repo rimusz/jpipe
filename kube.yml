@@ -26,6 +26,14 @@ pipelines:
             - name: c3i_dev_kube
             - name: env_test
         execution:
+          onStart:
+            - curl -LO https://git.io/get_helm.sh
+            - chmod 700 get_helm.sh
+            - ./get_helm.sh
+            - helm init --client-only
+            - helm repo add jfrog https://charts.jfrog.io/
+            - helm repo update
+            - helm plugin install https://github.com/rimusz/helm-tiller
           onExecute:
             - cd $res_c3i_setup_resourcePath
             - ls
@@ -35,13 +43,6 @@ pipelines:
             - gcloud version
             - gcloud container clusters get-credentials conan-dev --zone us-west1-a --project cpe-c3i-dev
             - kubectl get pods -n conan
-            - curl -LO https://git.io/get_helm.sh
-            - chmod 700 get_helm.sh
-            - ./get_helm.sh
-            - helm init --client-only
-            - helm repo add jfrog https://charts.jfrog.io/
-            - helm repo update
-            - helm plugin install https://github.com/rimusz/helm-tiller
             - helm tiller run -- helm ls
             - echo foo is $foo and fizz is $fizz
             - echo pipe is $pipe
