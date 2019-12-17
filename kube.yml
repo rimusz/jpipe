@@ -1,12 +1,12 @@
 resources:
-  - name: c3i_setup
+  - name: c3i_setup2
     type: GitRepo
     configuration:
       gitProvider: rimas_github
       path: conan-io/c3i-setup
       
 pipelines:
-  - name: TestKube
+  - name: TestKube2
     configuration:
       environmentVariables:
         readOnly:
@@ -21,7 +21,7 @@ pipelines:
             fizz: bin
             DESIRED_VERSION: v2.14.3
           inputResources:
-            - name: c3i_setup
+            - name: c3i_setup2
           integrations:
             - name: c3i_dev_kube
             - name: env_test
