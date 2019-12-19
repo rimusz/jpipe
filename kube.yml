@@ -14,7 +14,7 @@ pipelines:
         check: 'true'
     steps:
       - name: run1
-        type: host
+        type: Bash
         configuration:
           environmentVariables:
             foo: bar
@@ -46,7 +46,7 @@ pipelines:
             - echo check is $check
             - add_run_variables firststg=1,2
       - name: firststg1
-        type: host
+        type: Bash
         configuration:
           environmentVariables:
             check: 'true'
@@ -59,7 +59,7 @@ pipelines:
             - echo pipe is $pipe
             - echo check is $check
       - name: firststg2
-        type: host
+        type: Bash
         configuration:
           inputSteps:
             - name: run1
@@ -68,7 +68,7 @@ pipelines:
             - if [[ ! "$firststg" =~ "2" ]]; then echo need to skip; exit; fi
             - echo pipe is $pipe
       - name: firststg3
-        type: host
+        type: Bash
         configuration:
           inputSteps:
             - name: run1
