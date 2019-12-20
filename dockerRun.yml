@@ -8,9 +8,10 @@ pipelines:
             type: image
             image:
               custom:
-                name: alpine
-                tag: latest
+                name: docker.jfrog.io/golang
+                tag: 1.13-stretch
+                autoPull: false
         execution:
           onExecute:
-            - echo "I'm running in container!!!"
+            - go version
   
