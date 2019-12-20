@@ -6,7 +6,6 @@ pipelines:
         configuration:
           runtime:
             type: image
-            image:
               custom:
                 image: alpine
                 tag: latest
