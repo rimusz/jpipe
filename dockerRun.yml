@@ -9,7 +9,6 @@ pipelines:
             image:
               custom:
                 name: alpine
-                image: alpine
                 tag: latest
         execution:
           onExecute:
