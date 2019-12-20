@@ -10,7 +10,7 @@ pipelines:
               custom:
                 name: alpine
                 tag: latest
-        execution:
-          onExecute:
-            - echo "I'm running in container!!!"
+          execution:
+            onExecute:
+              - echo "I'm running in container!!!"
    
