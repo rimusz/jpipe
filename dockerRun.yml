@@ -13,5 +13,6 @@ pipelines:
                 autoPull: false
         execution:
           onExecute:
+            - echo "Running commands in container!!!"
             - go version
   
