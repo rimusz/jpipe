@@ -8,7 +8,7 @@ pipelines:
             type: image
             image:
               custom:
-                name: docker.jfrog.io/golang
+                name: golang
                 tag: 1.13-stretch
                 autoPull: false
         execution:
