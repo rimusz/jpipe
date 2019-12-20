@@ -8,6 +8,7 @@ pipelines:
             type: image
             image:
               custom:
+                name: alpine
                 image: alpine
                 tag: latest
         execution:
