@@ -15,6 +15,6 @@ pipelines:
           onExecute:
             - echo "Running commands in container!!!"
             - go version
-            - sleep 120
+            - sleep 10
             
   
