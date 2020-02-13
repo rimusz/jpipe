@@ -15,4 +15,6 @@ pipelines:
           # onStart: do
           onExecute:
             - echo foo is $foo and fizz is $fizz !!
+            - aws route53
+ 
 
