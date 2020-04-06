@@ -9,7 +9,7 @@ pipelines:
             image:
               custom:
                 name: golang
-                tag: 1.13-stretch
+                tag: 1.13.7
                 autoPull: false
         execution:
           onExecute:
