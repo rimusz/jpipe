@@ -13,6 +13,7 @@ pipelines:
                 autoPull: true
         execution:
           onExecute:
+            - docker ps
             - echo "Running commands in container!!!"
             - go version
             - sleep 10
