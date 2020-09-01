@@ -17,6 +17,6 @@ pipelines:
             - docker ps
             - echo "Running commands in container!!!"
             - go version
+            - jfrog --version
+            - helm version
             - sleep 10
-            
-  
