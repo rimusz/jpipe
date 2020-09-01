@@ -14,9 +14,7 @@ pipelines:
                 autoPull: true
         execution:
           onExecute:
-            - docker ps
+            - docker ps && docker images
             - echo "Running commands in container!!!"
             - go version
-            - jfrog --version
-            - helm version
             - sleep 10
