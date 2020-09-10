@@ -4,7 +4,7 @@ pipelines:
       - name: runCommandsInDocker
         type: Bash
         configuration:
-          nodePool: k8s-dynamic-nodepool
+          nodePool: k8s-dynamic-pool
           runtime:
             type: image
             image:
