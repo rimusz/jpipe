@@ -6,4 +6,5 @@ pipelines:
         execution:
           onExecute:
             - echo "Checking helm version"
+            - helm version
             - sleep 10
