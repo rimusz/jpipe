@@ -5,6 +5,6 @@ pipelines:
         type: Bash
         execution:
           onExecute:
-            - echo "Checking helm version"
-            - helm version
+            - echo "Checking helm 3 version"
+            - helm3 version
             - sleep 10
