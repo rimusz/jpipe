@@ -9,7 +9,7 @@ pipelines:
             image:
               custom:
                 name: golang
-                tag: 1.14.6
+                tag: 1.16.0
                 autoPull: true
         execution:
           onExecute:
@@ -17,5 +17,9 @@ pipelines:
             - echo "Running commands in container!!!"
             - go version
             - echo "Checking helm version"
-            - helm version
+      - name: checkHelm
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Checking helm version"
             - sleep 10
