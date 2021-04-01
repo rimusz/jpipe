@@ -1,6 +1,12 @@
 pipelines:
   - name: dockerRun
     steps:
+      - name: checkHelm
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Checking helm version"
+            - helm version
       - name: runCommandsInDocker
         type: Bash
         configuration:
@@ -10,7 +16,7 @@ pipelines:
             image:
               custom:
                 name: golang
-                tag: 1.14.6
+                tag: 1.16
                 autoPull: true
         execution:
           onExecute:
