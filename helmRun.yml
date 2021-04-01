@@ -1,0 +1,9 @@
+pipelines:
+  - name: helmRun
+    steps:
+      - name: checkHelm
+        type: Bash
+        execution:
+          onExecute:
+            - echo "Checking helm version"
+            - sleep 10
