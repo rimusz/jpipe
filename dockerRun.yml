@@ -1,12 +1,6 @@
 pipelines:
   - name: dockerRun
     steps:
-      - name: checkHelm
-        type: Bash
-        execution:
-          onExecute:
-            - echo "Checking helm version"
-            - helm version
       - name: runCommandsInDocker
         type: Bash
         configuration:
@@ -23,4 +17,6 @@ pipelines:
             - docker ps && docker images
             - echo "Running commands in container!!!"
             - go version
+            - echo "Checking helm version"
+            - helm version
             - sleep 10
