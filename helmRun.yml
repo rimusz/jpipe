@@ -24,7 +24,6 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            env1: value1
             env2:
               description: step description
               default: value1
@@ -34,7 +33,8 @@ pipelines:
               allowCustom: true
         execution:
           onExecute:
-            - echo ${pipe_env_var}
+            - echo ${FORCE}
+            - echo ${FORCE_CHART}
             - echo ${env2}
             - echo "Checking helm 3 version"
             - helm3 version
