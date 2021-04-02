@@ -2,13 +2,13 @@ pipelines:
   - name: helmRun
     configuration:
       environmentVariables:
-        readOnly:
-          step_env_var:
-            description: step description
-            default: step_default_value
-              values:
-              - value1
-              - value2
+        step_env_var:
+          description: step description
+          default: value0
+          values:
+            - value1
+            - value2
+          allowCustom: true
     steps:
       - name: checkHelm
         type: Bash
