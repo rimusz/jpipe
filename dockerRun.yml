@@ -1,5 +1,7 @@
 pipelines:
   - name: dockerRun
+    configuration:
+      nodePool: devops-apps-k8s-node-pool
     steps:
       - name: runCommandsInDocker
         type: Bash
