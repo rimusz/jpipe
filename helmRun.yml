@@ -1,5 +1,11 @@
 pipelines:
   - name: helmRun
+    configuration:
+      environmentVariables:
+        readOnly:
+          pipe_env_var: 
+            description: pipe env var description
+            default: pipe_default_value
     steps:
       - name: checkHelm
         type: Bash
@@ -15,6 +21,7 @@ pipelines:
               allowCustom: false
         execution:
           onExecute:
+            - echo ${pipe_env_var}
             - echo ${env2}
             - echo "Checking helm 3 version"
             - helm3 version
