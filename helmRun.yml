@@ -8,7 +8,7 @@ pipelines:
             env1: value1
             env2:
               description: step description
-              default: value0
+              default: value1
               values:
                 - value1
                 - value2
