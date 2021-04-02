@@ -1,5 +1,11 @@
 pipelines:
   - name: helmRun
+    configuration:
+      environmentVariables:
+        readOnly:
+          FORCE: no
+          FORCE_CHART: ""
+          DIVIDER: "------------------------------------"
     steps:
       - name: checkHelm
         type: Bash
