@@ -5,7 +5,10 @@ pipelines:
         readOnly:
           pipe_env_var: 
             description: pipe env var description
-            default: pipe_default_value
+            default: pipe_default_value1
+            values:
+              - pipe_default_value1
+              - pipe_default_value2
     steps:
       - name: checkHelm
         type: Bash
