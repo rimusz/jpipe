@@ -3,12 +3,22 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          pipe_env_var: 
-            description: pipe env var description
-            default: pipe_default_value1
+          FORCE: 
+            description: Force chart release
+            default: no
             values:
-              - pipe_default_value1
-              - pipe_default_value2
+              - no
+              - yes
+            allowCustom: false
+          FORCE_CHART:
+            description: Set chart name or select all
+            default: all
+            values:
+              - all
+            allowCustom: true
+          DIVIDER: "------------------------------------"
+          HELM_VERSION: 3.5.3
+          CHARTS_BRANCH: develop
     steps:
       - name: checkHelm
         type: Bash
