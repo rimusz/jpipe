@@ -1,20 +1,21 @@
 pipelines:
   - name: helmRun
-    configuration:
-      environmentVariables:
-        step_env_var:
-          description: step description
-          default: value0
-          values:
-            - value1
-            - value2
-          allowCustom: true
     steps:
       - name: checkHelm
         type: Bash
+        configuration:
+          environmentVariables:
+            env1: value1
+            env2:
+              description: step description
+              default: value0
+              values:
+                - value1
+                - value2
+              allowCustom: true
         execution:
           onExecute:
-            - echo ${step_env_var}
+            - echo ${env2}
             - echo "Checking helm 3 version"
             - helm3 version
             - sleep 10
