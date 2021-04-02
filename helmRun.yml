@@ -3,14 +3,18 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          FORCE: no
-          FORCE_CHART: ""
-          DIVIDER: "------------------------------------"
+          step_env_var:
+            description: step description
+            default: step_default_value
+              values:
+              - value1
+              - value2
     steps:
       - name: checkHelm
         type: Bash
         execution:
           onExecute:
+            - echo ${step_env_var}
             - echo "Checking helm 3 version"
             - helm3 version
             - sleep 10
