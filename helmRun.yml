@@ -21,7 +21,7 @@ pipelines:
               values:
                 - value1
                 - value2
-              allowCustom: false
+              allowCustom: true
         execution:
           onExecute:
             - echo ${pipe_env_var}
